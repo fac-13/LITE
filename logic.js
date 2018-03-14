@@ -16,12 +16,9 @@ var logic = {
     if(trueValues.length === 1){
       return ["stressed"]
     }
-    // if(trueValues.length === 2){
-    //   return ["panic"]
-    // }
-    // if(trueValues.length >= 3){
-    //   return ["apocalypse"]
-    // }
+    if(trueValues.length === 2){
+      return ["panic"]
+    }
   },
 
   extractData: function(){
