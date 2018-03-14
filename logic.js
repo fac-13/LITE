@@ -1,20 +1,19 @@
 
 var logic = {
  
-
   extractKeywords: function(){
 
-  }
+  },
 
-  extractData: function(){
+  extractData: function(object) {
+    // return an array of objects
 
-  }
+    return [];
+  },
 
   processDateFormat: function(){
     
   }
-
-
 
 }
 
