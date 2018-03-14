@@ -2,8 +2,8 @@
 var logic = {
 
 
-  extractKeywords: function(obj){
-    var asteroidArray = obj.near_earth_objects["2018-01-04"];
+  extractKeywords: function(obj, date){
+    var asteroidArray = obj.near_earth_objects[date];
     var result = asteroidArray.map(function(val){
       return val.is_potentially_hazardous_asteroid
     })
@@ -12,8 +12,6 @@ var logic = {
     })
     if(trueValues.length == 0){
       return ["happy"]
-    } else {
-      return "hi"
     }
   },
 

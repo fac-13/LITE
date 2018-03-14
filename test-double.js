@@ -1,4 +1,6 @@
 
+var dateWillHit = "2018-03-03";
+var dateWontHit = "2018-01-04";
   var willHit = {
     "links": {
         "next": "https://api.nasa.gov/neo/rest/v1/feed?start_date=2018-03-04&end_date=2018-03-05&detailed=false&api_key=HvBelXPceWFwmSUXn1BHVgyQFMpJeTT63Hrgrjkt",
@@ -2053,4 +2055,4 @@
     }
 }
 
-module.exports = { willHit, wontHit }
+module.exports = { willHit, wontHit, dateWillHit, dateWontHit }
