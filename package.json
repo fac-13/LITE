@@ -1,0 +1,26 @@
+{
+  "name": "lite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dom.js",
+  "scripts": {
+    "test": "nyc tape test.js | tap-spec",
+    "test2": "nodemon test.js | tap-spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fac-13/LITE.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fac-13/LITE/issues"
+  },
+  "homepage": "https://github.com/fac-13/LITE#readme",
+  "devDependencies": {
+    "nodemon": "^1.17.2",
+    "nyc": "^11.6.0",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.9.0"
+  }
+}
