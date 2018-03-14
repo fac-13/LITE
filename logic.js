@@ -19,6 +19,9 @@ var logic = {
     if(trueValues.length === 2){
       return ["panic"]
     }
+    if(trueValues.length >= 3) {
+      return ["apocalypse"]
+    }
   },
 
   extractData: function(){

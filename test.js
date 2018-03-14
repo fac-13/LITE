@@ -33,6 +33,6 @@ test('tests keywords are extracted based on object data', function(t){
 test('tests keywords are extracted based on object data', function(t) {
   var actual = logic.extractKeywords(willHitObj3, dateWillHit);
   var expected = ['apocalypse'];
-  t.deepEqual(actual, expected, "3 or more true values - should return ['apocalypse']");
+  t.deepEqual(actual, expected, "3 true values - should return ['apocalypse']");
   t.end();
 })
