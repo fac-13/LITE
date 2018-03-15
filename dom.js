@@ -9,15 +9,16 @@ var testURL = 'https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-09-07&end_d
 // fetch to be used as a general function for calling an api request...
 
 function fetchData(url, callback, err) {
+  console.log(url)
+//  url = "https://cors-anywhere.herokuapp.com/" + url;
   var xhr = new XMLHttpRequest();
-  xhr.addEventListener("load", function() {
-  if (xhr.status === 200) {
+  xhr.onreadystatechange = function() {
+  if (xhr.readyState === 4 && xhr.status === 200) {
     var response = JSON.parse(xhr.responseText);
+    console.log(response);
     return callback(response);
-  } else {
-    cb2();
   }
-  });
+  };
   xhr.open("GET", url);
   xhr.send();
 }
@@ -25,8 +26,8 @@ function fetchData(url, callback, err) {
 function cb1(data) {
   var keywordsForGiphy = logic.extractKeywords(data, "2015-09-07");
   var dataReadyToDisplay = logic.extractData(data);
-  //fetchData(buildURLForGiphy(keywordsForGiphy),
-  //});
+  console.log('fetching from giphy');
+  fetchData(buildURLForGiphy(keywordsForGiphy), logic.extractURL, cb2);
 }
 
 function cb2() {
@@ -37,11 +38,12 @@ function buildURLForGiphy(search) {
   var giphyKey = '&api_key=' + 'JAvLv2ikeBnNmVn4AJUPy8WFnTyajjfe';
   var giphyKeyword = search[0];
   var giphyURL = 'http://api.giphy.com/v1/gifs/search?q=' + giphyKeyword + giphyKey;
-  console.log(giphyURL);
+  return giphyURL;
+  // console.log(giphyURL);
 }
 
 fetchData(testURL, cb1, cb2);
-buildURLForGiphy(['dogs']);
+//buildURLForGiphy(['dogs']);
 
 // function for eventlisteners
 function addListener(selector, eventName, callback) {
