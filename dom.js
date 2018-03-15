@@ -1,13 +1,10 @@
-var submitButton = document.querySelector("#submit");
+var btn = document.querySelector("#submit");
+var nasaUrl =
+  "https://api.nasa.gov/neo/rest/v1/feed?start_date=2018-03-03&end_date=2018-03-03&api_key=EdWudhuvn66MkSN47xbjWdghOaFq4IndYQEm58HD";
 var date;
-var nasaDate = "start_date=" + date + "&end_date=" + date;
-var dataReadyToDisplay;
-//var nasaKey = '&api_key=' + config.nasaKey;
-//var nasaURL = 'https://api.nasa.gov/neo/rest/v1/feed?' + nasaDate + nasaKey;
-
-var testURL =
-  "https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-09-07&end_date=2015-09-08&api_key=HvBelXPceWFwmSUXn1BHVgyQFMpJeTT63Hrgrjkt";
-// fetch to be used as a general function for calling an api request...
+var nasaKeyword = "start_date=" + date + "&end_date=" + date;
+var nasaEndpoint = "https://api.nasa.gov/neo/rest/v1/feed?";
+var giphyEndpoint = "http://api.giphy.com/v1/gifs/search?q=";
 
 function fetchData(url, callback, err) {
   console.log(url);
@@ -43,9 +40,6 @@ function buildURLForGiphy(search) {
   return giphyURL;
   // console.log(giphyURL);
 }
-
-fetchData(testURL, cb1, cb2);
-//buildURLForGiphy(['dogs']);
 
 // function for eventlisteners
 function addListener(selector, eventName, callback) {
@@ -103,5 +97,5 @@ function formatDate() {
 btn.addEventListener("click", function(e) {
   nasaUrl = makeURL(nasaEndpoint, nasaKeyword, config.nasaAPI);
   console.log(nasaUrl);
-  fetchData(nasaUrl, c1, c2);
+  fetchData(nasaUrl, cb1, cb2);
 });
