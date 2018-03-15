@@ -63,12 +63,12 @@ function displayAstroid(obj) {
   var hazardous = obj["hazardous"];
   var fateData = document.querySelector("#fate_data");
   var div = document.createElement("div");
-  var p = document.createElement("p");
-  div.appendChild(p);
-  var text = document.createTextNode(
-    "Diameter: " + diameter + " Speed: " + speed + " Hazardous: " + hazardous
-  );
-  p.appendChild(text);
+  var first = document.createElement("p").appendChild(document.createTextNode("Diameter: " + diameter));
+  var second = document.createElement("p").appendChild(document.createTextNode("Speed: " + speed));
+  var third = document.createElement("p").appendChild(document.createTextNode("Hazardous: " + hazardous));
+  div.appendChild(first);
+  div.appendChild(second);
+  div.appendChild(third);
   fateData.appendChild(div);
 }
 
