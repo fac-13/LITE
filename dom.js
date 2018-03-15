@@ -3,6 +3,7 @@ var date;
 var nasaKeyword;
 var nasaEndpoint = "https://api.nasa.gov/neo/rest/v1/feed?";
 var giphyEndpoint = "http://api.giphy.com/v1/gifs/search?q=";
+var keywordsForGiphy;
 
 function fetchData(url, callback, err) {
   var xhr = new XMLHttpRequest();
@@ -18,7 +19,7 @@ function fetchData(url, callback, err) {
 }
 
 function cb1(data) {
-  var keywordsForGiphy = logic.extractKeywords(data, date)[0];
+  keywordsForGiphy = logic.extractKeywords(data, date)[0];
   dataReadyToDisplay = logic.extractData(data);
   fetchData(
     makeURL(giphyEndpoint, keywordsForGiphy, config.giphyAPI),
@@ -45,8 +46,9 @@ function displayData(link, data) {
     " potentially hazardous asteroids speeding towards earth on this date!";
 
   var giffarea = document.querySelector("#giff_image");
-  var imagetag = document.querySelector("#image");
-  imagetag.src = link;
+  var imageTag = document.querySelector("#image");
+  imageTag.src = link;
+  imageTag.setAttribute('aria-label', 'gif image portraying the emotion of ' + keywordsForGiphy);
   data.forEach(function(x) {
     displayAstroid(x);
   });
