@@ -50,10 +50,14 @@ var logic = {
 
     return results;
   },
-    extractURL: function(response) {
-      var link = response.data[1].images.downsized_medium.url;
-      return link;
-    }
+  extractURL: function(response) {
+    var link = response.data[1].images.downsized_medium.url;
+    this.displayData(link, dataReadyToDisplay);
+    return link;
+  },
+
+  displayData: function(link, data) {
+    console.log(link,data)
 };
 // export for logic
 if (typeof module !== "undefined") {
