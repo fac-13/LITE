@@ -88,8 +88,7 @@ function formatDate() {
   var year = document.querySelector("#year").value;
   var month = document.querySelector("#month").value;
   var day = document.querySelector("#day").value;
-  date = year + "-" + month + "-" + day;
-  console.log(date);
+  console.log((date = "'" + year + "-" + month + "-" + day + "'"));
 }
 
 addListener(submitButton, "click", formatDate);
