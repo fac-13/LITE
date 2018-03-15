@@ -21,10 +21,8 @@ var logic = {
     }
   },
 
-  processDateFormat: function() {},
-
   extractData: function(object) {
-    // in object we need to extract diamerer speed and hazardous
+    //extracting diameter speed and hazardous
     var nearEarthObjects = object["near_earth_objects"];
     var asteroidsKey = Object.keys(nearEarthObjects)[0];
 
@@ -47,13 +45,12 @@ var logic = {
         hazardous: hazardous
       };
     });
-    console.log(results);
     return results;
   },
   extractURL: function(response) {
-    var link = response.data[1].images.downsized_medium.url;
+    var randomNumber = Math.floor(Math.random()*response.data.length);
+    var link = response.data[randomNumber].images.downsized_medium.url;
     displayData(link, dataReadyToDisplay);
-    console.log(link);
     return link;
   }
 };
