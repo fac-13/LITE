@@ -1,6 +1,5 @@
-var input = document.querySelector("#date");
 var submitButton = document.querySelector("#submit");
-var date = input.value;
+var date;
 var nasaDate = "start_date=" + date + "&end_date=" + date;
 var dataReadyToDisplay;
 //var nasaKey = '&api_key=' + config.nasaKey;
@@ -26,7 +25,7 @@ function fetchData(url, callback, err) {
 }
 
 function cb1(data) {
-  var keywordsForGiphy = logic.extractKeywords(data, "2015-09-07");
+  var keywordsForGiphy = logic.extractKeywords(data, date);
   dataReadyToDisplay = logic.extractData(data);
   console.log("fetching from giphy");
   fetchData(buildURLForGiphy(keywordsForGiphy), logic.extractURL, cb2);
@@ -53,12 +52,46 @@ function addListener(selector, eventName, callback) {
   selector.addEventListener(eventName, callback);
 }
 
-function displayData() {
+function displayData(link, data) {
+  var numasteroids = data.length;
+  var heading = document.querySelector("#response_header");
+  heading.textContent =
+    "There are " +
+    numasteroids +
+    " potentially hazardous asteroids speeding towards earth on this date!";
+
+  var giffarea = document.querySelector("#giff_image");
+  var imagetag = document.querySelector("#image");
+  imagetag.src = link;
+  data.forEach(function(x) {
+    displayAstroid(x);
+  });
   // one process to determine what is inside of the object passed in
 }
 
-addListener(submitButton, "click", function(e) {
-  console.log(e);
-});
+function displayAstroid(obj) {
+  var diameter = obj["diameter"];
+  var speed = obj["speed"];
+  var hazardous = obj["hazardous"];
+  var fate_data = document.querySelector("#fate_data");
+  var div = document.createElement("div");
+  var p = document.createElement("p");
+  div.appendChild(p);
+  var text = document.createTextNode(
+    "Diameter: " + diameter + " speed: " + speed + " Hazardous: " + hazardous
+  );
+  p.appendChild(text);
+  fate_data.appendChild(div);
+}
+
+function formatDate() {
+  var year = document.querySelector("#year").value;
+  var month = document.querySelector("#month").value;
+  var day = document.querySelector("#day").value;
+  date = year + "-" + month + "-" + day;
+  console.log(date);
+}
+
+addListener(submitButton, "click", formatDate);
 
 //potentially have displayData() take two arrays, one with objects and one with strings

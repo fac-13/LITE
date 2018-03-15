@@ -52,12 +52,10 @@ var logic = {
   },
   extractURL: function(response) {
     var link = response.data[1].images.downsized_medium.url;
-    this.displayData(link, dataReadyToDisplay);
+    displayData(link, dataReadyToDisplay);
+    console.log(link);
     return link;
-  },
-
-  displayData: function(link, data) {
-    console.log(link,data)
+  }
 };
 // export for logic
 if (typeof module !== "undefined") {
