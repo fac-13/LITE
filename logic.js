@@ -47,14 +47,10 @@ var logic = {
         hazardous: hazardous
       };
     });
-
+    console.log(results)
     return results;
-  },
-    extractURL: function(response) {
-      var link = response.data[1].images.downsized_medium.url;
-      return link;
-    }
-};
+  }
+}
 // export for logic
 if (typeof module !== "undefined") {
   module.exports = logic;

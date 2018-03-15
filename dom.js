@@ -1,61 +1,68 @@
-var input = document.querySelector('#date');
-var submitButton = document.querySelector('#submit');
-var date = input.value;
-var nasaDate = 'start_date=' + date + '&end_date='+ date;
-//var nasaKey = '&api_key=' + config.nasaKey;
-//var nasaURL = 'https://api.nasa.gov/neo/rest/v1/feed?' + nasaDate + nasaKey;
+var input = document.querySelector("#date")
+var btn = document.querySelector('.submit')
+var nasaUrl = 'https://api.nasa.gov/neo/rest/v1/feed?start_date=2018-03-03&end_date=2018-03-03&api_key=EdWudhuvn66MkSN47xbjWdghOaFq4IndYQEm58HD'
+var date = "2018-03-03";
+var nasaKeyword= "start_date="+date+"&end_date="+ date
+var nasaEndpoint = 'https://api.nasa.gov/neo/rest/v1/feed?'
+//var nasaAPI = '&api_key=EdWudhuvn66MkSN47xbjWdghOaFq4IndYQEm58HD'
 
-var testURL = 'https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-09-07&end_date=2015-09-08&api_key=HvBelXPceWFwmSUXn1BHVgyQFMpJeTT63Hrgrjkt';
-// fetch to be used as a general function for calling an api request...
+var giphyEndpoint = "http://api.giphy.com/v1/gifs/search?q="
+// var giphyAPI = "&api_key=dc6zaTOxFJmzC"
 
-function fetchData(url, callback, err) {
-  console.log(url)
-//  url = "https://cors-anywhere.herokuapp.com/" + url;
+var image = document.querySelector(".giphy")
+var asteroidData;
+var para = document.querySelector('.displaying')
+
+function fetchData(url, callback, other) {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
-  if (xhr.readyState === 4 && xhr.status === 200) {
-    var response = JSON.parse(xhr.responseText);
-    console.log(response);
-    return callback(response);
+   if (xhr.readyState == 4 && xhr.status === 200) {
+     var response = JSON.parse(xhr.responseText);
+     return callback(response);
+   } else {
+   other();
   }
-  };
+  }
   xhr.open("GET", url);
   xhr.send();
-}
+  }
 
-function cb1(data) {
-  var keywordsForGiphy = logic.extractKeywords(data, "2015-09-07");
-  var dataReadyToDisplay = logic.extractData(data);
-  console.log('fetching from giphy');
-  fetchData(buildURLForGiphy(keywordsForGiphy), logic.extractURL, cb2);
-}
+  function makeURL(endpoint, keyword, apikey){
+    var url = endpoint+keyword+apikey;
+    console.log(url)
+    return url;
+  }
 
-function cb2() {
-  console.log('There was an error.');
-}
+  function displayData(){}
 
-function buildURLForGiphy(search) {
-  var giphyKey = '&api_key=' + 'JAvLv2ikeBnNmVn4AJUPy8WFnTyajjfe';
-  var giphyKeyword = search[0];
-  var giphyURL = 'http://api.giphy.com/v1/gifs/search?q=' + giphyKeyword + giphyKey;
-  return giphyURL;
-  // console.log(giphyURL);
-}
+  function c1(data){
+    console.log(data)
+    asteroidData = logic.extractData(data);
+    var keyword = logic.extractKeywords(data, '2018-03-03');
+    var giphyURL = makeURL(giphyEndpoint, keyword, config.giphyAPI)
+    //var giphyURL = 'http://api.giphy.com/v1/gifs/search?q=stressed&api_key=dc6zaTOxFJmzC'
+    fetchData(giphyURL, extractLink, c2)
+  }
+  function c2(){
+    console.log('error')
+  }
 
-fetchData(testURL, cb1, cb2);
-//buildURLForGiphy(['dogs']);
+  function extractLink(res){
+    console.log(res)
+    var link = res.data[1].images.downsized_medium.url;
+    console.log(link);
+    displayData(link, asteroidData);
+    return link;
+  }
 
-// function for eventlisteners
-function addListener(selector, eventName, callback) {
-selector.addEventListener(eventName, callback);
-}
+  function displayData(link, asteroidData) {
+    image.src=link;
+    para.innerText = asteroidData[0].diameter + " " +asteroidData[0].speed + " "+asteroidData[0].hazardous;
+  }
 
-function displayData(){
-  // one process to determine what is inside of the object passed in
-}
-
-addListener(submitButton, 'click', function(e) {
-  console.log(e);
-});
-
-  //potentially have displayData() take two arrays, one with objects and one with strings
+   btn.addEventListener('click', function(e){
+     date = input.value;
+     nasaUrl=  makeURL(nasaEndpoint, nasaKeyword, config.nasaAPI)
+     console.log(nasaUrl)
+     fetchData(nasaUrl, c1, c2)
+   })
