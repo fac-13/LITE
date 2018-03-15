@@ -47,15 +47,11 @@ var logic = {
         hazardous: hazardous
       };
     });
-
+    console.log(results)
     return results;
   }
-};
+}
 // export for logic
 if (typeof module !== "undefined") {
   module.exports = logic;
 }
-
-
-
-
