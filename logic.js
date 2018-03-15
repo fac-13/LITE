@@ -51,7 +51,11 @@ var logic = {
     return results;
   }
 };
-
+// export for logic
 if (typeof module !== "undefined") {
   module.exports = logic;
 }
+
+
+
+
