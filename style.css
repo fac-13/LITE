@@ -1,0 +1,92 @@
+body {
+  margin: 0 auto;
+  padding: 0;
+  height: 100vh;
+  background-color: hsl(30, 85%, 60%);
+  font-family: futura;
+}
+
+input[type="text"] {
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  align-content: center;
+  font-size: 1.5rem;
+  color: hsl(200, 15%, 35%);
+  background-color: blanchedalmond;
+  border-radius: 5px;
+  border: none;
+  margin: 0 1rem;
+}
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px hsl(30, 05%, 60%);
+}
+::placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 0.2rem;
+  text-indent: 10%;
+}
+
+section {
+  margin: 0 auto;
+  width: 80%;
+}
+
+h1,
+h2 {
+  width: 50%;
+  margin: 20vh auto;
+  color: blanchedalmond;
+  font-size: 3rem;
+  margin-top: 20%;
+  text-align: center;
+}
+h1 {
+}
+h2 {
+  width: 70%;
+}
+
+#date {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  align-content: center;
+}
+
+#home-page {
+}
+#submit_label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#submit {
+  margin: 3rem auto;
+  width: 45%;
+  height: 4rem;
+  border-radius: 5px;
+  background-color: hsla(30, 30%, 34%, 0.2);
+  color: blanchedalmond;
+  font-size: 2rem;
+  border: none;
+  outline: none;
+}
+#submit:focus {
+  outline: none;
+}
+#submit:hover {
+  cursor: pointer;
+  background-color: hsla(30, 30%, 34%, 0.4);
+}
+#year {
+  width: 6rem;
+}
+#giff_image {
+  display: flex;
+  justify-content: center;
+}
