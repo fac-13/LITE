@@ -47,7 +47,7 @@ var logic = {
         hazardous: hazardous
       };
     });
-    console.log(results)
+    console.log(results);
     return results;
   },
   extractURL: function(response) {
@@ -57,8 +57,6 @@ var logic = {
     return link;
   }
 };
-  }
-}
 // export for logic
 if (typeof module !== "undefined") {
   module.exports = logic;

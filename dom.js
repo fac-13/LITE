@@ -52,6 +52,12 @@ function addListener(selector, eventName, callback) {
   selector.addEventListener(eventName, callback);
 }
 
+function makeURL(endpoint, keyword, apikey) {
+  var url = endpoint + keyword + apikey;
+  console.log(url);
+  return url;
+}
+
 function displayData(link, data) {
   var numasteroids = data.length;
   var heading = document.querySelector("#response_header");
@@ -88,9 +94,14 @@ function formatDate() {
   var year = document.querySelector("#year").value;
   var month = document.querySelector("#month").value;
   var day = document.querySelector("#day").value;
-  console.log((date = "'" + year + "-" + month + "-" + day + "'"));
+  date = "'" + year + "-" + month + "-" + day + "'";
+  console.log(date);
+  return date;
 }
 
-addListener(submitButton, "click", formatDate);
-
 //potentially have displayData() take two arrays, one with objects and one with strings
+btn.addEventListener("click", function(e) {
+  nasaUrl = makeURL(nasaEndpoint, nasaKeyword, config.nasaAPI);
+  console.log(nasaUrl);
+  fetchData(nasaUrl, c1, c2);
+});
