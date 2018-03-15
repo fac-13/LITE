@@ -2,7 +2,7 @@ var btn = document.querySelector("#submit");
 var nasaUrl =
   "https://api.nasa.gov/neo/rest/v1/feed?start_date=2018-03-03&end_date=2018-03-03&api_key=EdWudhuvn66MkSN47xbjWdghOaFq4IndYQEm58HD";
 var date;
-var nasaKeyword = "start_date=" + date + "&end_date=" + date;
+var nasaKeyword;
 var nasaEndpoint = "https://api.nasa.gov/neo/rest/v1/feed?";
 var giphyEndpoint = "http://api.giphy.com/v1/gifs/search?q=";
 
@@ -22,26 +22,20 @@ function fetchData(url, callback, err) {
 }
 
 function cb1(data) {
-  var keywordsForGiphy = logic.extractKeywords(data, date);
+  var keywordsForGiphy = logic.extractKeywords(data, date)[0];
   dataReadyToDisplay = logic.extractData(data);
   console.log("fetching from giphy");
-  fetchData(buildURLForGiphy(keywordsForGiphy), logic.extractURL, cb2);
+  fetchData(
+    makeURL(giphyEndpoint, keywordsForGiphy, config.giphyAPI),
+    logic.extractURL,
+    cb2
+  );
 }
 
 function cb2() {
   console.log("There was an error.");
 }
 
-function buildURLForGiphy(search) {
-  var giphyKey = "&api_key=" + "JAvLv2ikeBnNmVn4AJUPy8WFnTyajjfe";
-  var giphyKeyword = search[0];
-  var giphyURL =
-    "http://api.giphy.com/v1/gifs/search?q=" + giphyKeyword + giphyKey;
-  return giphyURL;
-  // console.log(giphyURL);
-}
-
-// function for eventlisteners
 function addListener(selector, eventName, callback) {
   selector.addEventListener(eventName, callback);
 }
@@ -88,13 +82,15 @@ function formatDate() {
   var year = document.querySelector("#year").value;
   var month = document.querySelector("#month").value;
   var day = document.querySelector("#day").value;
-  date = "'" + year + "-" + month + "-" + day + "'";
+  date = year + "-" + month + "-" + day;
+  nasaKeyword = "start_date=" + date + "&end_date=" + date;
   console.log(date);
   return date;
 }
 
 //potentially have displayData() take two arrays, one with objects and one with strings
 btn.addEventListener("click", function(e) {
+  formatDate();
   nasaUrl = makeURL(nasaEndpoint, nasaKeyword, config.nasaAPI);
   console.log(nasaUrl);
   fetchData(nasaUrl, cb1, cb2);
