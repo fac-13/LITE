@@ -4,10 +4,8 @@ var nasaUrl = 'https://api.nasa.gov/neo/rest/v1/feed?start_date=2018-03-03&end_d
 var date = "2018-03-03";
 var nasaKeyword= "start_date="+date+"&end_date="+ date
 var nasaEndpoint = 'https://api.nasa.gov/neo/rest/v1/feed?'
-//var nasaAPI = '&api_key=EdWudhuvn66MkSN47xbjWdghOaFq4IndYQEm58HD'
-
 var giphyEndpoint = "http://api.giphy.com/v1/gifs/search?q="
-// var giphyAPI = "&api_key=dc6zaTOxFJmzC"
+
 
 var image = document.querySelector(".giphy")
 var asteroidData;
