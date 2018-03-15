@@ -47,8 +47,13 @@ function displayData(link, data) {
   var giffarea = document.querySelector("#giff_image");
   var imagetag = document.querySelector("#image");
   imagetag.src = link;
+  var fateData = document.querySelector('#fate_data');
+    while (fateData.firstChild) {
+        fateData.removeChild(fateData.firstChild);
+    }
   data.forEach(function(x) {
     displayAstroid(x);
+    
   });
 }
 
@@ -64,7 +69,7 @@ function displayAstroid(obj) {
     "Diameter: " + diameter + " Speed: " + speed + " Hazardous: " + hazardous
   );
   p.appendChild(text);
-  fate_data.appendChild(div);
+  fateData.appendChild(div);
 }
 
 function formatDate() {
