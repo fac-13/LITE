@@ -75,13 +75,18 @@ function formatDate() {
   var day = document.querySelector("#day").value;
   date = year + "-" + month + "-" + day;
   nasaKeyword = "start_date=" + date + "&end_date=" + date;
-  console.log(date);
   return date;
 }
 
-//potentially have displayData() take two arrays, one with objects and one with strings
-btn.addEventListener("click", function(e) {
+function handleSubmit(e) {
+  if (e.type === 'keypress' && (e.keyCode !== 32 || e.keyCode !== 13)) {
+      return;
+  }
   formatDate();
   nasaUrl = makeURL(nasaEndpoint, nasaKeyword, config.nasaAPI);
   fetchData(nasaUrl, cb1, cb2);
-});
+}
+
+btn.addEventListener("click", handleSubmit);
+
+btn.addEventListener('keypress', handleSubmit);
