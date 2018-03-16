@@ -43,16 +43,17 @@ function displayData(link, data) {
   heading.textContent =
     "There are " +
     numasteroids +
-    " potentially hazardous asteroids speeding towards earth on this date!";
+    " asteroids speeding towards earth on this date!";
 
   var giffarea = document.querySelector("#giff_image");
   var imageTag = document.querySelector("#image");
   imageTag.src = link;
   imageTag.setAttribute('aria-label', 'gif image portraying the emotion of ' + keywordsForGiphy);
   var fateData = document.querySelector('#fate_data');
-    while (fateData.firstChild) {
-        fateData.removeChild(fateData.firstChild);
-    }
+  while (fateData.firstChild) {
+      fateData.removeChild(fateData.firstChild);
+  }
+
   data.forEach(function(x) {
     displayAstroid(x);
     
@@ -60,6 +61,9 @@ function displayData(link, data) {
 }
 
 function displayAstroid(obj) {
+  var resultsDiv = document.querySelector('#results-page')
+  resultsDiv.style.display = "block";
+  resultsDiv.scrollIntoView();
   var diameter = obj["diameter"];
   var speed = obj["speed"];
   var hazardous = obj["hazardous"];
