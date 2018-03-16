@@ -3,6 +3,7 @@ var date;
 var nasaKeyword;
 var nasaEndpoint = "https://api.nasa.gov/neo/rest/v1/feed?";
 var giphyEndpoint = "http://api.giphy.com/v1/gifs/search?q=";
+var keywordsForGiphy;
 
 function fetchData(url, callback, err) {
   var xhr = new XMLHttpRequest();
@@ -18,7 +19,7 @@ function fetchData(url, callback, err) {
 }
 
 function cb1(data) {
-  var keywordsForGiphy = logic.extractKeywords(data, date)[0];
+  keywordsForGiphy = logic.extractKeywords(data, date)[0];
   dataReadyToDisplay = logic.extractData(data);
   fetchData(
     makeURL(giphyEndpoint, keywordsForGiphy, config.giphyAPI),
@@ -45,8 +46,9 @@ function displayData(link, data) {
     " potentially hazardous asteroids speeding towards earth on this date!";
 
   var giffarea = document.querySelector("#giff_image");
-  var imagetag = document.querySelector("#image");
-  imagetag.src = link;
+  var imageTag = document.querySelector("#image");
+  imageTag.src = link;
+  imageTag.setAttribute('aria-label', 'gif image portraying the emotion of ' + keywordsForGiphy);
   var fateData = document.querySelector('#fate_data');
     while (fateData.firstChild) {
         fateData.removeChild(fateData.firstChild);
@@ -78,13 +80,18 @@ function formatDate() {
   var day = document.querySelector("#day").value;
   date = year + "-" + month + "-" + day;
   nasaKeyword = "start_date=" + date + "&end_date=" + date;
-  console.log(date);
   return date;
 }
 
-//potentially have displayData() take two arrays, one with objects and one with strings
-btn.addEventListener("click", function(e) {
+function handleSubmit(e) {
+  if (e.type === 'keypress' && (e.keyCode !== 32 || e.keyCode !== 13)) {
+      return;
+  }
   formatDate();
   nasaUrl = makeURL(nasaEndpoint, nasaKeyword, config.nasaAPI);
   fetchData(nasaUrl, cb1, cb2);
-});
+}
+
+btn.addEventListener("click", handleSubmit);
+
+btn.addEventListener('keypress', handleSubmit);
