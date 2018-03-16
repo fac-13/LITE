@@ -59,6 +59,9 @@ function displayData(link, data) {
 }
 
 function displayAstroid(obj) {
+  var resultsDiv = document.querySelector('#results-page')
+  resultsDiv.style.display = "block";
+  resultsDiv.scrollIntoView();
   var diameter = obj["diameter"];
   var speed = obj["speed"];
   var hazardous = obj["hazardous"];
@@ -85,7 +88,6 @@ function formatDate() {
 
 //potentially have displayData() take two arrays, one with objects and one with strings
 btn.addEventListener("click", function(e) {
-  document.querySelector('#results-page').scrollIntoView();
   formatDate();
   nasaUrl = makeURL(nasaEndpoint, nasaKeyword, config.nasaAPI);
   fetchData(nasaUrl, cb1, cb2);

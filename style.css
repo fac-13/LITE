@@ -98,5 +98,6 @@ img {
   margin-top: 100px;
 }
 #results-page {
+  display: none;
   height: 100vh;
 } 
