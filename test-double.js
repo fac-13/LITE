@@ -710,7 +710,7 @@ url: "https://media2.giphy.com/media/JIX9t2j0ZTN9S/200w_s.gif?cid=e1bb72ff5aaa51
 width: "200",
 height: "200"
 },
-480w_still: {
+w_still: {
 url: "https://media2.giphy.com/media/JIX9t2j0ZTN9S/480w_s.jpg?cid=e1bb72ff5aaa51c66d47426b45921148",
 width: "480",
 height: "480",
