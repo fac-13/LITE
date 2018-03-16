@@ -20,13 +20,7 @@ function getAsteroidData(data) {
   dataReadyToDisplay = logic.extractData(data);
   fetchData(
     makeURL(giphyEndpoint, keywordsForGiphy, config.giphyAPI),
-    logic.extractURL,
-    cb2
-  );
-}
-
-function cb2() {
-  console.log("There was an error.");
+    logic.extractURL);
 }
 
 function makeURL(endpoint, keyword, apikey) {
@@ -39,7 +33,7 @@ function displayData(link, data) {
   var heading = document.querySelector("#response_header");
   heading.textContent =
     "There are " +
-    numasteroids + " ☄ " +
+    numAsteroids + " ☄ " +
     " asteroids speeding towards earth on this date!";
 
   var giffarea = document.querySelector("#giff_image");
