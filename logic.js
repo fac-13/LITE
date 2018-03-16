@@ -1,6 +1,8 @@
 var logic = {
-  extractKeywords: function(obj, date) {
-    var asteroidArray = obj.near_earth_objects[date];
+  extractKeywords: function(obj) {
+    var nearEarthObjects = obj["near_earth_objects"];
+    var asteroidsKey = Object.keys(nearEarthObjects)[0];
+    var asteroidArray = nearEarthObjects[asteroidsKey];
     var result = asteroidArray.map(function(val) {
       return val.is_potentially_hazardous_asteroid;
     });
