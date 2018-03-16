@@ -7,7 +7,6 @@ function fetchData(url, callback) {
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
       var response = JSON.parse(xhr.responseText);
-
       return callback(response);
     }
   };
