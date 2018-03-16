@@ -1,10 +1,8 @@
 var btn = document.querySelector("#submit");
-var date;
-var nasaKeyword;
 var nasaEndpoint = "https://api.nasa.gov/neo/rest/v1/feed?";
 var giphyEndpoint = "http://api.giphy.com/v1/gifs/search?q=";
 
-function fetchData(url, callback, err) {
+function fetchData(url, callback) {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -17,7 +15,7 @@ function fetchData(url, callback, err) {
   xhr.send();
 }
 
-function cb1(data) {
+function getAsteroidData(data) {
   var keywordsForGiphy = logic.extractKeywords(data, date)[0];
   dataReadyToDisplay = logic.extractData(data);
   fetchData(
@@ -37,11 +35,11 @@ function makeURL(endpoint, keyword, apikey) {
 }
 
 function displayData(link, data) {
-  var numasteroids = data.length;
+  var numAsteroids = data.length;
   var heading = document.querySelector("#response_header");
   heading.textContent =
     "There are " +
-    numasteroids +
+    numAsteroids +
     " potentially hazardous asteroids speeding towards earth on this date!";
 
   var giffarea = document.querySelector("#giff_image");
@@ -72,6 +70,8 @@ function displayAstroid(obj) {
   fateData.appendChild(div);
 }
 
+// global variables to be set at a later point 
+var date, nasaKeyword;
 function formatDate() {
   var year = document.querySelector("#year").value;
   var month = document.querySelector("#month").value;
@@ -86,5 +86,5 @@ function formatDate() {
 btn.addEventListener("click", function(e) {
   formatDate();
   nasaUrl = makeURL(nasaEndpoint, nasaKeyword, config.nasaAPI);
-  fetchData(nasaUrl, cb1, cb2);
+  fetchData(nasaUrl, getAsteroidData);
 });
