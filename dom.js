@@ -31,23 +31,22 @@ function makeURL(endpoint, keyword, apikey) {
 function displayData(link, data) {
   var numAsteroids = data.length;
   var heading = document.querySelector("#response_header");
-    var count = 0;
-    data.forEach(function(data){
-      if(data.hazardous === true) {
-          count = count + 1;
-        }
-        return count;
-    })
-    if(count === 0) {
-      heading.textContent = "There are " +
-      numAsteroids + " ☄ " +
-      " asteroids speeding towards earth on this date, but none of them are hazardous!"
-    } else {
-      heading.textContent ="There are " +
-      numAsteroids + " ☄ " +
-      " asteroids speeding towards earth on this date";
-    }
-  // }
+  var count = 0;
+  data.forEach(function(data){
+    if(data.hazardous === true) {
+        count = count + 1;
+      }
+      return count;
+  })
+  if(count === 0) {
+    heading.textContent = "There are " +
+    numAsteroids + " ☄ " +
+    " asteroids speeding towards earth on this date, but none of them are hazardous!"
+  } else {
+    heading.textContent ="There are " +
+    numAsteroids + " ☄ " +
+    " asteroids speeding towards earth on this date";
+  }
   var giffarea = document.querySelector("#giff_image");
   var imageTag = document.querySelector("#image");
   imageTag.src = link;
