@@ -39,15 +39,18 @@ var logic = {
     var results = asteroids.map(function(asteroid) {
       var diameter = asteroid["estimated_diameter"]["meters"][
         "estimated_diameter_max"
-      ].toString();
+      ];
+      diameter = Math.trunc(diameter).toString();
       var speed =
         asteroid["close_approach_data"][0]["relative_velocity"][
           "miles_per_hour"
         ];
+        speed = Number(speed)
+        speed = Math.trunc(speed).toString();
       var hazardous = asteroid["is_potentially_hazardous_asteroid"];
       return {
         diameter: diameter + " Meters",
-        speed: speed + " Miles per hour",
+        speed: speed + " mph",
         hazardous: hazardous
       };
     });

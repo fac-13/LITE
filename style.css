@@ -4,6 +4,7 @@ body {
   /* height: 100vh; */
   background-color: hsl(30, 85%, 60%);
   font-family: futura, sans-serif;
+  font-size: 18px;
 }
 
 input[type="text"] {
@@ -38,19 +39,22 @@ section {
 
 h1,
 h2 {
-  width: 50%;
-  margin: 20vh auto;
   color: blanchedalmond;
-  font-size: 3rem;
   
-  text-align: center;
 }
 h1 {
-  margin-top: 20%;
+  margin: 10% auto 7% auto;
+  font-size: 4rem;
+  text-align: center;
+  border-bottom: 10px solid hsla(30, 30%, 34%, 0.2);
+  padding-bottom: 5vh;
+  max-width: 42vh;
 }
 h2 {
   width: 70%;
-  margin-top: 10%;
+  font-size: 3rem;
+  text-align: center;
+  margin: 10% auto;
 }
 
 #date {
@@ -61,16 +65,17 @@ h2 {
   align-content: center;
 }
 
-/* #home-page {
-} */
+ #home-page {
+  margin-bottom: 15vh;
+} 
 #submit_label {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 #submit {
-  margin: 3rem auto;
-  width: 45%;
+  margin: 3rem auto 1rem auto;
+  min-width: 42vh;
   height: 4rem;
   border-radius: 5px;
   background-color: hsla(30, 30%, 34%, 0.2);
@@ -101,3 +106,19 @@ img {
   display: none;
   height: 100vh;
 } 
+.asteroids {
+  background-color: hsla(30, 30%, 34%, 0.3);
+  color: blanchedalmond;
+  padding: 3vh;
+  min-width:30vh;
+  max-width: 30vh;
+  margin: 3vh;
+  border-radius: 10px; 
+}
+
+#fate_data {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 10vh;
+}

@@ -39,8 +39,8 @@ function displayData(link, data) {
   var heading = document.querySelector("#response_header");
   heading.textContent =
     "There are " +
-    numAsteroids +
-    " potentially hazardous asteroids speeding towards earth on this date!";
+    numasteroids + " ☄ " +
+    " asteroids speeding towards earth on this date!";
 
   var giffarea = document.querySelector("#giff_image");
   var imageTag = document.querySelector("#image");
@@ -66,12 +66,16 @@ function displayAstroid(obj) {
   var hazardous = obj["hazardous"];
   var fateData = document.querySelector("#fate_data");
   var div = document.createElement("div");
-  var p = document.createElement("p");
-  div.appendChild(p);
-  var text = document.createTextNode(
-    "Diameter: " + diameter + " Speed: " + speed + " Hazardous: " + hazardous
-  );
-  p.appendChild(text);
+  div.classList.add('asteroids');
+  var first = document.createElement("p")
+  first.appendChild(document.createTextNode("☄ Diameter: " + diameter));
+  var second = document.createElement("p")
+  second.appendChild(document.createTextNode("☄ Speed: " + speed));
+  var third = document.createElement("p")
+  third.appendChild(document.createTextNode("☄ Hazardous: " + hazardous));
+  div.appendChild(first);
+  div.appendChild(second);
+  div.appendChild(third);
   fateData.appendChild(div);
 }
 
