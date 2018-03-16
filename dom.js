@@ -42,15 +42,16 @@ function displayData(link, data) {
   heading.textContent =
     "There are " +
     numasteroids +
-    " potentially hazardous asteroids speeding towards earth on this date!";
+    " asteroids speeding towards earth on this date!";
 
   var giffarea = document.querySelector("#giff_image");
   var imagetag = document.querySelector("#image");
   imagetag.src = link;
   var fateData = document.querySelector('#fate_data');
-    while (fateData.firstChild) {
-        fateData.removeChild(fateData.firstChild);
-    }
+  while (fateData.firstChild) {
+      fateData.removeChild(fateData.firstChild);
+  }
+
   data.forEach(function(x) {
     displayAstroid(x);
     
@@ -84,6 +85,7 @@ function formatDate() {
 
 //potentially have displayData() take two arrays, one with objects and one with strings
 btn.addEventListener("click", function(e) {
+  document.querySelector('#results-page').scrollIntoView();
   formatDate();
   nasaUrl = makeURL(nasaEndpoint, nasaKeyword, config.nasaAPI);
   fetchData(nasaUrl, cb1, cb2);

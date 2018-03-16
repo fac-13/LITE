@@ -1,9 +1,9 @@
 body {
   margin: 0 auto;
   padding: 0;
-  height: 100vh;
+  /* height: 100vh; */
   background-color: hsl(30, 85%, 60%);
-  font-family: futura;
+  font-family: futura, sans-serif;
 }
 
 input[type="text"] {
@@ -17,6 +17,7 @@ input[type="text"] {
   border-radius: 5px;
   border: none;
   margin: 0 1rem;
+  text-align: center;
 }
 input:focus {
   outline: none;
@@ -41,13 +42,15 @@ h2 {
   margin: 20vh auto;
   color: blanchedalmond;
   font-size: 3rem;
-  margin-top: 20%;
+  
   text-align: center;
 }
 h1 {
+  margin-top: 20%;
 }
 h2 {
   width: 70%;
+  margin-top: 10%;
 }
 
 #date {
@@ -58,8 +61,8 @@ h2 {
   align-content: center;
 }
 
-#home-page {
-}
+/* #home-page {
+} */
 #submit_label {
   display: flex;
   flex-direction: column;
@@ -89,4 +92,11 @@ h2 {
 #giff_image {
   display: flex;
   justify-content: center;
+  
 }
+img {
+  margin-top: 100px;
+}
+#results-page {
+  height: 100vh;
+} 
