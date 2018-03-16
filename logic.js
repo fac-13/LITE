@@ -7,17 +7,21 @@ var logic = {
     var trueValues = result.filter(function(val) {
       return val === true;
     });
-    if (trueValues.length == 0) {
-      return ["happy"];
-    }
-    if (trueValues.length === 1) {
-      return ["stressed"];
-    }
-    if (trueValues.length === 2) {
-      return ["panic"];
-    }
-    if (trueValues.length >= 3) {
-      return ["apocalypse"];
+
+    switch (trueValues.length) {
+      case 0:
+        return ["happy"];
+        break;
+      case 1:
+        return ["stressed"];
+        break;
+      case 2:
+        return ["panic"];
+        break;
+      case 3:
+       return ["apocalypse"];
+      default:
+       return ["apocalypse"];
     }
   },
 
